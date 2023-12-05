@@ -37,7 +37,7 @@ public class ExerciseController {
     public ResponseEntity<List<ExerciseDTO>> getExerciseBySetsAndWeigth(
             @RequestParam("sets") int sets,
             @RequestParam("weigth") int weigth) {
-        List<ExerciseDTO> exercises = exerciseService.getExercisesBySetsAndReps(sets, weigth);
+        List<ExerciseDTO> exercises = exerciseService.getExercisesBySetsAndWeigth(sets, weigth);
 
         if (!exercises.isEmpty()) {
             return new ResponseEntity<>(exercises, HttpStatus.OK);

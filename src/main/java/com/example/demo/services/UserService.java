@@ -75,6 +75,9 @@ public class UserService {
     }
 
     private Set<Exercise> getExercisesByIds(Set<Long> exerciseIds) {
+        if (exerciseIds == null) {
+            return new HashSet<>();    //added because IDs cannot be null
+        }
         return new HashSet<>(exerciseRepository.findAllById(exerciseIds));
     }
 }
