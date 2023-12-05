@@ -12,6 +12,7 @@ import java.util.Set;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserDTO {
+    @Positive
     private Long id;
     @NotBlank(message = "Name is required")
     @Size(min = 3, max = 50, message = "Name must be between 3 and 50 characters")
@@ -21,6 +22,7 @@ public class UserDTO {
     @Size(min = 8, message = "Password must be at least 8 characters")
     private String password;
 
+    @Positive
     @Size(min = 1, message = "At least one exercise id is required")
     private Set<Long> exerciseIds;
 

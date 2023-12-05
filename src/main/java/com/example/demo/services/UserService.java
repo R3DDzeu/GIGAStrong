@@ -37,12 +37,25 @@ public class UserService {
 
     @Transactional
     public UserDTO createUser(UserDTO userDTO) {
+        // Validate exercise IDs
+        validateExerciseIds(userDTO.getExerciseIds());
+
         User user = userMapper.toEntity(userDTO);
         Set<Exercise> exercises = getExercisesByIds(userDTO.getExerciseIds());
         user.setExercises(exercises);
 
         User savedUser = userRepository.save(user);
         return userMapper.toDTO(savedUser);
+    }
+
+    private void validateExerciseIds(Set<Long> exerciseIds) {
+        if (exerciseIds != null) {
+            for (Long exerciseId : exerciseIds) {
+                if (exerciseId < 0) {
+                    throw new IllegalArgumentException("Exercise ID cannot be negative: " + exerciseId);
+                }
+            }
+        }
     }
     @Transactional
     public UserDTO associateExercises(Long userId, List<Long> exerciseIds) {
