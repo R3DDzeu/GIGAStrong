@@ -3,6 +3,7 @@ package com.example.demo.models.entities;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
 import lombok.*;
 
 import java.util.HashSet;
@@ -28,12 +29,16 @@ public class Exercise {
     private String name;
 
     @Column(name="sets")
+    @Positive
     private int sets;
 
+
     @Column(name="reps")
+    @Positive
     private int reps;
 
     @Column(name="weight")
+    @Positive
     private double weight;
 
     @ManyToMany(mappedBy = "exercises")
